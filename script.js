@@ -24,6 +24,15 @@ const generateHTMLcard = (name, role, email, img) => {
      </div>`;
 };
 
+const createTeam = (teamMembers) => {
+  let cardsHTML = ``;
+  for (const member of teamMembers) {
+    const { name, role, email, img } = member;
+    cardsHTML += generateHTMLcard(name, role, email, img);
+  }
+  membersCards.innerHTML = cardsHTML;
+};
+
 const teamMembers = [
   {
     name: "Marco Bianchi",
@@ -62,12 +71,15 @@ const teamMembers = [
     img: "img/female3.png",
   },
 ];
-let cardsHTML = ``;
-for (const member of teamMembers) {
-  const { name, role, email, img } = member;
-  cardsHTML += generateHTMLcard(name, role, email, img);
-}
-membersCards.innerHTML = cardsHTML;
+
+createTeam(teamMembers);
+
+// let cardsHTML = ``;
+// for (const member of teamMembers) {
+//   const { name, role, email, img } = member;
+//   cardsHTML += generateHTMLcard(name, role, email, img);
+// }
+// membersCards.innerHTML = cardsHTML;
 
 newMemberForm.addEventListener("submit", (e) => {
   e.preventDefault();
