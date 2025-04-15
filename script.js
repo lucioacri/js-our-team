@@ -1,4 +1,28 @@
 const membersCards = document.getElementById("members-cards");
+const formButton = document.getElementById("form-button");
+const newName = document.getElementById("new-name");
+const newRole = document.getElementById("new-role");
+const newEmail = document.getElementById("new-email");
+const newImage = document.getElementById("new-image");
+const newMemberForm = document.getElementById("new-member-form");
+
+// FUNCTIONS
+
+const generateHTMLcard = (name, role, email, img) => {
+  return `
+    <div class="col-4 my-col">
+      <div class="my-card d-flex bg-black text-white m-2">
+       <div class="card-image">
+        <img src="./${img}" alt="${name}">
+       </div>
+       <div class="card-text">
+        <h3> ${name} </h3>
+        <p>${role}</p>
+        <p>${email}</p>
+       </div>
+      </div>
+     </div>`;
+};
 
 const teamMembers = [
   {
@@ -41,19 +65,21 @@ const teamMembers = [
 let cardsHTML = ``;
 for (const member of teamMembers) {
   const { name, role, email, img } = member;
-  console.log(member);
-  cardsHTML += `
-    <div class="col-4 my-col">
-      <div class="my-card d-flex bg-black text-white m-2">
-       <div class="card-image">
-        <img src="./${img}" alt="${name}">
-       </div>
-       <div class="card-text">
-        <h3> ${name} </h3>
-        <p>${role}</p>
-        <p>${email}</p>
-       </div>
-      </div>
-     </div>`;
+  cardsHTML += generateHTMLcard(name, role, email, img);
 }
 membersCards.innerHTML = cardsHTML;
+
+newMemberForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const name = newName.value;
+
+  const role = newRole.value;
+
+  const email = newEmail.value;
+
+  const img = newImage.value;
+
+  const newMember = { name, role, email, img };
+  teamMembers.push(newMember);
+  membersCards.innerHTML += generateHTMLcard(name, role, email, img);
+});
