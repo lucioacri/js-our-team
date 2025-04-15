@@ -43,15 +43,17 @@ for (const member of teamMembers) {
   const { name, role, email, img } = member;
   console.log(member);
   cardsHTML += `
-    <div class=col>
-      <div class=card-image>
-       <img src="./${img}" alt="${name}">
+    <div class="col-4 my-col">
+      <div class="my-card d-flex bg-black text-white m-2">
+       <div class="card-image">
+        <img src="./${img}" alt="${name}">
+       </div>
+       <div class="card-text">
+        <h3> ${name} </h3>
+        <p>${role}</p>
+        <p>${email}</p>
+       </div>
       </div>
-      <div class=card-text>
-       <h3> ${name} </h3>
-       <p>${role}</p>
-       <p>${email}</p>
-      </div>
-    </div>`;
+     </div>`;
 }
 membersCards.innerHTML = cardsHTML;

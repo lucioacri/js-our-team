@@ -1,0 +1,13 @@
+.card-image {
+  max-height: 100px;
+  max-width: 100px;
+}
+
+img {
+  height: 100%;
+  display: block;
+}
+
+p {
+  margin-bottom: 2px;
+}
